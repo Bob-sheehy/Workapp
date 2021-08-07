@@ -5,11 +5,31 @@ class MeetingsController < ApplicationController
   def index
     @meetings = Meeting.all
     @meeting = Meeting.new
+    @avg_review = Meeting.average(:duration)
+    #@sum_duration= Meeting.sum(:duration)
+  # @meetingtotal = Meeting.where("created_at >= ? AND created_at < ?", Time.now.beginning_of_day, Time.now.end_of_day).#sum(:duration)
+    
   end
+  def daily_total_duration
+   # Meeting.where("start_date >= ? AND end_date < ?", Time.now.beginning_of_day, Time.now.end_of_day).sum(:duration)
+    @meeting = Meeting.where("start_date >= ?", Time.now.beginning_of_week).sum(:duration)
+   end
+   
 
+  #def daily_total_price
+   # @meeting = Meeting.new
+    #@meetings = Meeting.where("created_at >= ? AND created_at < ?", Time.now.beginning_of_day, Time.now.end_of_day).sum(:duration)
+   #end
+   
   # GET /meetings/1 or /meetings/1.json
   def show
   end
+
+  #def daily_duration
+   # Meeting.where("created_at >= ? AND created_at < ?", Time.now.beginning_of_day, Time.now.end_of_day).sum(:duration)
+   #end
+  
+   
 
   # GET /meetings/new
   def new

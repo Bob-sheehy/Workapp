@@ -9,13 +9,17 @@ class Meeting < ApplicationRecord
 
   #def duration
 
-   #duration = (end_date - start_date).to_i
+   #self.duration = (end_date - start_date).to_i
     
     #end
-    
+   
+   # def all_day
+    #  Meeting.where("created_at >= ? AND created_at < ?", Time.now.beginning_of_day, Time.now.end_of_day).sum(:duration)
+
+    #end
 
     def set_duration
-      duration = (end_date - start_date).to_i
+      self.duration = (end_date - start_date).to_i
     end
 
 end
